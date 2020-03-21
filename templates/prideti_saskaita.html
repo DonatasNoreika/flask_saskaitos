@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.numeris.label(class="form-control-label") }}
+        {{ form.numeris(class="form-control") }}
+        {% if form.numeris.errors %}
+            {% for error in form.numeris.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.balansas.label(class="form-control-label") }}
+        {{ form.balansas(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.vartotojas.label(class="form-control-label") }}
+        {{ form.vartotojas(class="form-control") }}
+    </div>
+    {{ form.submit }}
+</form>
+{% endblock %}

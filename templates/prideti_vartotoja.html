@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+        {% if form.vardas.errors %}
+            {% for error in form.vardas.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+        {% if form.pavarde.errors %}
+            {% for error in form.pavarde.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {{ form.submit }}
+</form>
+{% endblock %}
