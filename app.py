@@ -5,8 +5,12 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 # https://www.youtube.com/watch?v=b9W2ul2VRRc
 
+# https://youtu.be/u0oDDZrDz9U
 
-from flask import Flask, render_template
+# deploy
+# https://youtu.be/goToXTC96Co
+
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 # from form import SaskaitaForm, VartotojasForm
@@ -35,6 +39,7 @@ class Vartotojas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     vardas = db.Column(db.String(80), nullable=False)
     pavarde = db.Column(db.String(80), nullable=False)
+    saskaitaos = db.relationship("Saskaita")
 
 @app.route("/")
 def invoices():
@@ -71,7 +76,7 @@ def new_user():
         naujas_vartotojas = Vartotojas(vardas=forma.vardas.data, pavarde=forma.pavarde.data)
         db.session.add(naujas_vartotojas)
         db.session.commit()
-        return users()
+        return redirect(url_for('users'))
     return render_template("prideti_vartotoja.html", form=forma)
 
 def new_query():
